@@ -1,0 +1,120 @@
+// lab 3 Task 1 finalized
+#include <iostream>
+using namespace std;
+
+class MarkerPen
+{
+    private:
+    string Brand;
+    string Colour;
+    int Inklevel;
+    string Refeliblity;
+    
+    public:
+    void SetBrand(string brand)
+    {
+        Brand = brand;
+    }
+    
+    void SetColour(string colour)
+    {
+        Colour = colour;
+    }
+    
+    void SetInklevel(int level)
+    {
+        Inklevel = level;
+    }
+    
+    void SetRefeblity(string refebelity )
+    {
+       Refeliblity = refebelity;
+    }
+    
+    void Descreaseink()
+    {
+        if(Inklevel > 0)
+        {
+            Inklevel--;
+        }
+        else
+        {
+            cout << " Inklevel Ended " << endl;
+        }
+    
+    }
+    
+    void Setrefiliblity(int level)
+    {
+        if(Refeliblity == "Yes")
+        {
+            Inklevel = level;
+        }
+        
+        
+    }
+    
+    string Getbrand()
+    {
+        return Brand;
+    }
+    
+    string Getcolour()
+    {
+        return Colour;
+    }
+    
+    int Getlevel()
+    {
+        return Inklevel;
+    }
+    
+    string  Getrefeblity()
+    {
+        return Refeliblity;
+    }
+    
+    void Displayinfo()
+    {
+        cout << " Brand is " << Brand << 
+                " Colour is " << Colour << " Ink level " << Inklevel << " Refeblity is " << Refeliblity << endl;
+    }
+    
+};
+
+int main() 
+{
+    string brand;
+    cout << " Enter Brand " << endl;
+    cin >> brand;
+    string colour;
+    cout << " Enter Colour " << endl;
+    cin >> colour;
+    int level;
+    cout << " Enter ink level " << endl;
+    cin >> level;
+    string refeblity;
+    cout <<  "  Enter in (Yes/No) the refeblity status of marker " << endl;
+    cin >> refeblity;
+    
+    
+    MarkerPen markerpen;
+    markerpen.SetBrand(brand);
+    markerpen.SetColour(colour);
+    markerpen.SetInklevel(level);
+    markerpen.SetRefeblity(refeblity);
+    
+    for(int i =0; i < 7; i++)
+    {
+        markerpen.Descreaseink();
+        if(markerpen.Getlevel() == 0)
+        {
+            int Level;
+            cout << " Tell refeblity level " << endl;
+            cin >> Level;
+            markerpen.Setrefiliblity(Level);
+        }
+    }
+    markerpen.Displayinfo();
+    return 0;
+}
