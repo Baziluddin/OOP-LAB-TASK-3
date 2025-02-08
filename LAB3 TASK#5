@@ -1,0 +1,162 @@
+// 24k-0559 BAZIL-UDDIN-KHAN
+#include <iostream>
+using namespace std;
+
+class GroceryStore
+{
+    private:
+    string ItemName;
+    int Totalitems=0;
+    double Prices;
+    
+    public:
+    void SetItemName(string itemname)
+    {
+        ItemName = itemname;
+    }
+    
+    string GetItemName()
+    {
+        return ItemName;
+    }
+    
+    
+    void SetTotalItems()
+    {
+        Totalitems++;
+    }
+    
+    void SetPrices(double price)
+    {
+        Prices = price;
+    }
+    
+    int GetTotalitems()
+    {
+        return Totalitems;
+    }
+    
+    double GetPrice()
+    {
+        return Prices;
+    }
+    
+    void AddnewItems(int TotalItems,GroceryStore * grocerrystore)
+    {
+        for(int i =0; i < TotalItems;i++)
+        {
+            string Name;
+            cout << " Enter Name of item to be added " << endl;
+            cin >> Name;
+            Totalitems++;
+            double price;
+            cout << " Enter Price For Item "  << i+1 << endl;
+            cin >> price;
+            grocerrystore[i].SetTotalItems();
+            grocerrystore[i].SetPrices(price);
+            grocerrystore[i].SetItemName(Name);
+        }
+    }
+    
+    void Updateprices(int TotalItems,GroceryStore * grocerrystore)
+    {
+        string UpdateItem;
+        cout << " Enter Item Whose Price is to be Updated " << endl;
+        cin >> UpdateItem;
+        double UpdatePrice;
+        cout << " Enter Updated Price of item  " << endl;
+        cin >> UpdatePrice;
+        
+        for(int i =0; i < TotalItems;i++)
+        {
+            if(grocerrystore[i].GetItemName() == UpdateItem)
+            {
+                grocerrystore[i].SetPrices(UpdatePrice);
+            }
+        }
+    }
+        
+    void GenerateReciept(int TotalItems,GroceryStore * grocerrystore,int Totalpurchase)
+        {
+            double Totalprice =0;
+            
+            for(int j =0; j < Totalpurchase; j++)
+            {
+                double PriceTotal =0; 
+                int Quantity =0;
+                
+                string ItemName;
+                cout << " Enter Item that is Purchased " << endl;
+                cin >> ItemName;
+                
+                
+                
+                for(int i =0; i < TotalItems;i++)
+                {
+                    if(grocerrystore[i].GetItemName() == ItemName)
+                    {
+                        Totalprice = Totalprice + grocerrystore[i].GetPrice();
+                        PriceTotal = PriceTotal + grocerrystore[i].GetPrice();
+                    Quantity++;
+                    }
+                }
+                
+            cout << " Item Name " << ItemName << " Price is " << PriceTotal << " Quantity Of Item is " << Quantity << endl;
+            
+            }
+            cout << " Your Total Bill id " << Totalprice << endl;
+        }
+        
+};
+
+int main() 
+{
+    int TotalItems;
+    string Choice;
+    GroceryStore * grocerrystore;
+    cout << " Welcome To Grocerry Management System " << endl;
+    
+    while(1)
+    {
+        cout << " Enter (Add/Exit/Update/Recipt) " << endl;
+        cin >> Choice;
+        if(Choice == "Add")
+        {
+            cout << " Enter Total Items to Add " << endl;
+            cin >> TotalItems;
+            grocerrystore = new GroceryStore[TotalItems];
+            grocerrystore->AddnewItems(TotalItems,grocerrystore);
+        }
+       else if(Choice == "Update")
+        {
+            grocerrystore->Updateprices(TotalItems,grocerrystore);
+        }
+       else if(Choice == "Recipt")
+        {
+            int TotalItem;
+            cout << " Enter Total Items Purchased " << endl;
+            cin >> TotalItem;
+            grocerrystore->GenerateReciept(TotalItems,grocerrystore,TotalItem);
+            
+            
+        }
+        
+        else if(Choice == "Exit")
+        {
+            break;
+        }
+        
+        else 
+        {
+            cout << " Invalid Entry try Again " << endl;
+        }
+        
+    }
+    
+    delete [] grocerrystore;
+    
+    
+    
+
+    return 0;
+}
