@@ -1,0 +1,111 @@
+// 24k-0559 bazil uddin khan
+// lab task#2 
+#include <iostream>
+using namespace std;
+
+class TeaMug
+{
+  private:
+  string Brand;
+  string Colour;
+  int Capacity;
+  int Currentfilllevel;
+  
+  public:
+  
+  void SetBrand(string brand)
+  {
+      Brand = brand;
+  }
+  void SetColour(string colour)
+  {
+      Colour = colour;
+  }
+  void SetCapacity(int capacity)
+  {
+      Capacity = capacity;
+  }
+  void SetCurrentfilllevel(int currentlevel)
+  {
+      Currentfilllevel = currentlevel;
+  }
+  
+  string GetBrand()
+  {
+      return Brand;
+  }
+  string GetColour()
+  {
+      return Colour;
+  }
+  int Getcapacity()
+  {
+      return Capacity;
+  }
+  int GetCurrentfilllevel()
+  {
+      return Currentfilllevel;
+  }
+  
+  int SipTea()
+  {
+      if(Currentfilllevel  != 0)
+      {
+          Currentfilllevel--;
+          cout << " Your mug has Current Mug level : " << Currentfilllevel << endl;
+          return 1;
+      }
+      else
+      {
+          return 0;
+      }
+  }
+  
+  void Refill()
+  {
+      if(Currentfilllevel == 0)
+      {
+          Currentfilllevel = Capacity;
+          cout << " Succesfully Refiled " << " " << " Ink level is now Reset to  " << Capacity <<  endl;
+      }
+  }
+};
+
+int main()
+{
+    TeaMug Teamug;
+    string Brand;
+    cout << " Enter Mug Brand " << endl;
+    cin >> Brand;
+    
+    string Colour;
+    cout << " Enter Mug  colour " << endl;
+    cin >> Colour;
+    
+    int Capacity;
+    cout << " Enter Mug Capacity " << endl;
+    cin >> Capacity;
+    
+    int Currentlevel;
+    cout << " Enter Mug  Current level  " << endl;
+    cin >> Currentlevel;
+    
+    Teamug.SetBrand(Brand);
+    Teamug.SetColour(Colour);
+    Teamug.SetCapacity(Capacity);
+    Teamug.SetCurrentfilllevel(Currentlevel);
+    for(int i =0; Teamug.Getcapacity() != 0 ; i++)
+    {
+        int result = Teamug.SipTea();
+        if(result == 0)
+        {
+            Teamug.Refill();
+            break;
+        }
+        
+    }
+    
+
+
+    return 0;
+}
